@@ -267,7 +267,7 @@ fi
 chown -R 755 /srv/http/config/unit/*.sh
 chown -R 755 /srv/http/eqfa12/unit/*.sh
 chown -R 755 /srv/http/eqfa12/unit/*.service
-mv -f /srv/http/config/unit/*.service /etc/systemd/system/
+cp -f /srv/http/config/unit/*.service /etc/systemd/system/
 
 systemctl daemon-reload
 systemctl enable connectnfs.service && sudo systemctl restart connectnfs.service
