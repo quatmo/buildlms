@@ -55,7 +55,6 @@ pacman --noconfirm -S git
 pacman --noconfirm -S docker-compose
 pacman --noconfirm -S docker
 
-
 echo "Add user"
 getent group logitechms &>/dev/null || groupadd -r logitechms >/dev/null
 getent passwd logitechms &>/dev/null || useradd -r -g logitechms -d /opt/logitechmediaserver-git -c 'Logitech Media Server' -s /bin/false logitechms >/dev/null
@@ -67,7 +66,6 @@ echo 'http ALL=(ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
 
 echo "Download LMS"
 wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/logitechmediaserver-64.pkg.tar.xz
-
 
 echo "Install LMS"
 pacman -U --noconfirm logitechmediaserver-64.pkg.tar.xz
@@ -117,7 +115,6 @@ systemctl restart sq.service
 
 sudo localectl set-locale LANG=en_US.UTF-8
 echo "Finished, the LMS at port 9000"
-
 
 if [ -d "/opt/sq" ]; then
     echo "Stopping Squeezelite"
@@ -178,9 +175,7 @@ git pull
 echo "Build Docker"
 docker-compose up -d
 #docker-compose up -d --force-recreate
-
 sleep 1
-
 echo "Remove the text ipv6.disable=1 in /boot/cmdline.txt"
 cp /boot/cmdline.txt /boot/cmdline.txt.backup && sed -i '0,/ipv6.disable=1/{s/ipv6.disable=1//}' /boot/cmdline.txt
 sleep 1
@@ -203,7 +198,6 @@ fi
 #systemctl enable tidal.service
 #systemctl restart tidal.service
 
-
 #tar -czvf /tmp/config.tar.gz /srv/http/config
 #tar -czvf /tmp/eqfa12.tar.gz /srv/http/eqfa12
 #tar -czvf /tmp/bub.tar.gz /srv/http/bub
@@ -211,18 +205,12 @@ fi
 #tar -czvf /tmp/Player.tar.gz /opt/logitechmediaserver-git/Slim/Player/Player.pm
 #tar -czvf /tmp/Linux.tar.gz /opt/logitechmediaserver-git/Slim/Utils/OS/Linux.pm
 #
-
 source_connectnfs="/srv/http/config/unit/connectnfs.service"
 destination_connectnfs="/etc/systemd/system/connectnfs.service"
-
 source_startu="/srv/http/config/unit/startu.service"
 destination_startu="/etc/systemd/system/startu.service"
-
-
 cp -f "$source_connectnfs" "$destination_connectnfs"
 cp -f "$source_startu" "$destination_startu"
-
-
 if [ ! -f "$destination_connectnfs" ]; then
     cp -f "$source_connectnfs" "$destination_connectnfs"
     echo "Sao chép"
