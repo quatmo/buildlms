@@ -1,0 +1,249 @@
+#!/bin/bash
+
+#chmod -R 755 /tmp/ins.sh && cd /tmp/ && ./ins.sh
+
+if [ -d "/opt/logitechmediaserver-git" ]; then
+    echo "Stopping Logitech Media Server"
+    systemctl stop logitechmediaserver-git.service
+fi
+
+if [ -d "/opt/sq" ]; then
+    echo "Stopping Squeezelite"
+    systemctl stop sq.service
+fi
+
+if [ -e /root/logitechmediaserver* ]; then
+    echo "Removing /root/logitechmediaserver*"
+    rm -f /root/logitechmediaserver*
+fi
+
+if [ -e /root/sq64* ]; then
+    echo "Removing /root/logitechmediaserver*"
+    rm -f /root/sq64*
+fi
+
+if grep -q "dtparam=audio=on" /boot/config.txt; then
+sudo sed -i '/dtparam=audio=on/d' /boot/config.txt
+else
+echo "No dtparam=audio=on"
+fi
+
+echo "Off the sound onboard"
+grep -q "dtparam=audio=off" /boot/config.txt
+if [ $? -eq 0 ]; then
+echo "onboard off"
+else
+echo "dtparam=audio=off" | sudo tee -a /boot/config.txt
+echo "onboard to off"
+fi
+
+echo "Install Lib"
+rm -f /var/lib/pacman/sync/*
+#pacman -Syy --noconfirm
+pacman -Syu --noconfirm --ignore dhcpcd
+pacman -S --noconfirm perl
+pacman -S --noconfirm perl-io-socket-ssl
+pacman -S --noconfirm perl-net-ssleay
+pacman -S --noconfirm perl-uri
+pacman -S --noconfirm faad2
+pacman -S --noconfirm libmad
+pacman -S --noconfirm mpg123
+pacman -S --noconfirm flac libvorbis
+
+echo "Docker"
+pacman --noconfirm -S git
+pacman --noconfirm -S docker-compose
+pacman --noconfirm -S docker
+
+
+echo "Add user"
+getent group logitechms &>/dev/null || groupadd -r logitechms >/dev/null
+getent passwd logitechms &>/dev/null || useradd -r -g logitechms -d /opt/logitechmediaserver-git -c 'Logitech Media Server' -s /bin/false logitechms >/dev/null
+mkdir -p /opt/logitechmediaserver-git/{cache,Logs,prefs{,/plugin},Plugins}
+touch /opt/logitechmediaserver-git/Logs/slimserver.log
+chown -R logitechms:logitechms /opt/logitechmediaserver-git
+echo 'logitechms ALL=(ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
+echo 'http ALL=(ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
+
+echo "Download LMS"
+wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/logitechmediaserver-64.pkg.tar.xz
+
+
+echo "Install LMS"
+pacman -U --noconfirm logitechmediaserver-64.pkg.tar.xz
+systemctl daemon-reload
+systemctl enable logitechmediaserver-git.service
+systemctl restart logitechmediaserver-git.service
+
+echo "Download Squeezelite and Install"
+wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/sq64.tgz
+tar -xzf sq64.tgz --overwrite -C /opt/
+
+echo "Creating systemd unit /etc/systemd/system/sq.service"
+echo "[Unit]
+Description=SQ Player
+After=local-fs.target remote-fs.target nss-lookup.target network.target
+
+[Service]
+Type=simple
+#WorkingDirectory=/opt/sq
+Environment=LD_LIBRARY_PATH=/opt/sq/lib64
+ExecStart=/opt/sq/squeezelite64 -o default -n SQ64-rAudio -s 127.0.0.1 -m 00:00:00:00:00:00
+Restart=always
+
+[Install]
+WantedBy=multi-user.target" > /opt/sq/sq.service || { echo "Creating systemd unit /opt/sq/sq.service failed"; exit 1; }
+
+ln -fs /opt/sq/sq.service /etc/systemd/system/sq.service
+chmod -R 777 /etc/systemd/system/sq.service
+
+hostname=$(hostname)
+replacement="http://${hostname}"
+if [ -f "/srv/http/assets/js/main.js" ]; then
+sed -i "s|https://github.com/rern/rAudio/discussions|${replacement}:9000|g" /srv/http/assets/js/main.js
+echo "Completed."
+else
+echo "File not found. Skipping..."
+fi
+
+card=$(grep -oP '(?<=defaults.pcm.card ).*' /etc/asound.conf)
+options="-o hw:$card"
+echo "Your Sound Card Number:" $card
+#sed -i "s|-o default|$options|g" /opt/sq/sq.service
+
+systemctl daemon-reload
+systemctl enable sq.service
+systemctl restart sq.service
+
+sudo localectl set-locale LANG=en_US.UTF-8
+echo "Finished, the LMS at port 9000"
+
+
+if [ -d "/opt/sq" ]; then
+    echo "Stopping Squeezelite"
+    systemctl stop sq.service
+fi
+
+cd /tmp
+wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/sq.service
+wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/sq.sh
+cp -f /tmp/sq.service /opt/sq/
+cp -f /tmp/sq.sh /opt/sq/
+chmod -R 755 /opt/sq/sq.service
+chmod -R 755 /opt/sq/sq.sh
+
+systemctl daemon-reload
+systemctl restart sq.service
+echo "Install SQ Finished"
+#systemctl status sq.service
+
+
+tar -xzvf /tmp/config.tar.gz --overwrite -C /
+tar -xzvf /tmp/eqfa12.tar.gz --overwrite -C /
+tar -xzvf /tmp/bub.tar.gz --overwrite -C /
+tar -xzvf /tmp/Player.tar.gz --overwrite -C /
+tar -xzvf /tmp/Linux.tar.gz --overwrite -C /
+
+sleep 1
+
+
+systemctl daemon-reload
+systemctl start docker.service
+systemctl enable docker.service
+
+if [ -e /etc/systemd/system/tidal.service ]; then
+    systemctl disable tidal.service
+    rm -f /etc/systemd/system/tidal.service
+fi
+
+echo "Clone Source"
+git clone https://github.com/GioF71/tidal-connect.git
+cd /tmp
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/entrypoint.sh
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/tidal.service
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/env
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/docker-compose.yaml
+chmod -R 755 /tmp/entrypoint.sh
+chmod -R 755 /tmp/tidal.service
+cp -f /tmp/entrypoint.sh /root/tidal-connect/bin/
+cp -f /tmp/tidal.service /etc/systemd/system/
+cp -f /tmp/env /root/tidal-connect/.env
+cp -f /tmp/docker-compose.yaml /root/tidal-connect/
+cd /root/tidal-connect
+git pull
+
+echo "Build Docker"
+docker-compose up -d
+#docker-compose up -d --force-recreate
+
+sleep 1
+
+echo "Remove the text ipv6.disable=1 in /boot/cmdline.txt"
+cp /boot/cmdline.txt /boot/cmdline.txt.backup && sed -i '0,/ipv6.disable=1/{s/ipv6.disable=1//}' /boot/cmdline.txt
+sleep 1
+
+if grep -q "dtparam=audio=on" /boot/config.txt; then
+sudo sed -i '/dtparam=audio=on/d' /boot/config.txt
+else
+echo "No dtparam=audio=on"
+fi
+
+echo "Off the sound onboard"
+grep -q "dtparam=audio=off" /boot/config.txt
+if [ $? -eq 0 ]; then
+echo "onboard off"
+else
+echo "dtparam=audio=off" | sudo tee -a /boot/config.txt
+echo "onboard to off"
+fi
+#systemctl daemon-reload
+#systemctl enable tidal.service
+#systemctl restart tidal.service
+
+
+#tar -czvf /tmp/config.tar.gz /srv/http/config
+#tar -czvf /tmp/eqfa12.tar.gz /srv/http/eqfa12
+#tar -czvf /tmp/bub.tar.gz /srv/http/bub
+#tar -czvf /tmp/sq64.tar.gz /opt/sq
+#tar -czvf /tmp/Player.tar.gz /opt/logitechmediaserver-git/Slim/Player/Player.pm
+#tar -czvf /tmp/Linux.tar.gz /opt/logitechmediaserver-git/Slim/Utils/OS/Linux.pm
+#
+
+source_connectnfs="/srv/http/config/unit/connectnfs.service"
+destination_connectnfs="/etc/systemd/system/connectnfs.service"
+
+source_startu="/srv/http/config/unit/startu.service"
+destination_startu="/etc/systemd/system/startu.service"
+
+
+cp -f "$source_connectnfs" "$destination_connectnfs"
+cp -f "$source_startu" "$destination_startu"
+
+
+if [ ! -f "$destination_connectnfs" ]; then
+    cp -f "$source_connectnfs" "$destination_connectnfs"
+    echo "Sao chép"
+else
+    echo "đã tồn tại."
+fi
+
+if [ ! -f "$destination_startu" ]; then
+    cp -f "$source_startu" "$destination_startu"
+    echo "Sao chép"
+else
+    echo "đã tồn tại."
+fi
+
+chown -R 755 /srv/http/config/unit/*.sh
+chown -R 755 /srv/http/eqfa12/unit/*.sh
+
+systemctl daemon-reload
+systemctl systemctl enable connectnfs.service && sudo systemctl restart connectnfs.service
+systemctl systemctl enable startu.service && sudo systemctl restart startu.service
+
+systemctl stop logitechmediaserver-git.service
+systemctl restart logitechmediaserver-git.service
+
+wget -O - https://raw.githubusercontent.com/lovehifi/lms-modern-skin/main/install.sh | sh
+echo "Installation completed."
+systemctl status logitechmediaserver-git.service
