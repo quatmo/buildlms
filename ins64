@@ -113,14 +113,14 @@ echo "Your Sound Card Number:" $card
 
 systemctl daemon-reload
 systemctl enable sq.service
-systemctl restart sq.service
+#systemctl restart sq.service
 
 sudo localectl set-locale LANG=en_US.UTF-8
 echo "Finished, the LMS at port 9000"
 
 if [ -d "/opt/sq" ]; then
     echo "Stopping Squeezelite"
-    systemctl stop sq.service
+    #systemctl stop sq.service
 fi
 
 cd /tmp
@@ -130,9 +130,10 @@ cp -f /tmp/sq.service /opt/sq/
 cp -f /tmp/sq.sh /opt/sq/
 chmod -R 755 /opt/sq/sq.service
 chmod -R 755 /opt/sq/sq.sh
+chown http:http /opt/sq/sq.sh
 
 systemctl daemon-reload
-systemctl restart sq.service
+#systemctl restart sq.service
 echo "Install SQ Finished"
 #systemctl status sq.service
 
