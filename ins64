@@ -165,19 +165,14 @@ cp -f /tmp/eq12.conf /srv/http/data/mpdconf/
 chown http:http /srv/http/data/mpdconf/eq12.conf
 
 if [ -f "$file" ]; then
-  # Extract the value after "device" and remove "hw:" prefix
   device=$(awk -F'"' '/device/ {gsub("hw:", "", $2); print $2; exit}' "$file")
-
-  # Print the extracted device
   echo "Device: $device"
 else
   echo "File not found: $file"
 fi
 
 if [ -f "$input_file" ]; then
-  # Read the content of the input file, replace plughw:X,Y with the device, and save to the output file
   sed "s/plughw:[0-9]\+,[0-9]\+/plughw:$device/g" "$input_file" > "$output_file"
-  echo "Replacement completed. Modified configuration saved to $output_file"
 else
   echo "Input file not found: $input_file"
 fi
