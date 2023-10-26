@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd /tmp
 #chmod -R 755 /tmp/ins.sh && cd /tmp/ && ./ins.sh
 
 if [ -d "/opt/logitechmediaserver-git" ]; then
