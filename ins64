@@ -276,6 +276,22 @@ systemctl enable startu.service && sudo systemctl restart startu.service
 systemctl stop logitechmediaserver-git.service
 systemctl restart logitechmediaserver-git.service
 
+lines_to_check=(
+    "hdmi_force_hotplug=1"
+    "hdmi_group=2"
+    "hdmi_mode=1"
+    "hdmi_mode=87"
+    "hdmi_cvt 800 480 60 6 0 0 0"
+    "gpio=22=op,dh"
+)
+config_file="/boot/config.txt"
+for line in "${lines_to_check[@]}"; do
+    if ! grep -q "$line" "$config_file"; then
+        echo "$line" >> "$config_file"
+    fi
+done
+echo "Configurations added"
+
 wget -O - https://raw.githubusercontent.com/lovehifi/lms-modern-skin/main/install.sh | sh
 echo "Installation completed."
 systemctl status logitechmediaserver-git.service
