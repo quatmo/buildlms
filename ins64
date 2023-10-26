@@ -134,11 +134,11 @@ systemctl restart sq.service
 echo "Install SQ Finished"
 #systemctl status sq.service
 
-wget https://raw.githubusercontent.com/quatmo/buildlms/main/config.tar.gz
-wget https://raw.githubusercontent.com/quatmo/buildlms/main/eqfa12.tar.gz
-wget https://raw.githubusercontent.com/quatmo/buildlms/main/bub.tar.gz
-wget https://raw.githubusercontent.com/quatmo/buildlms/main/Player.tar.gz
-wget https://raw.githubusercontent.com/quatmo/buildlms/main/Linux.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/config.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/eqfa12.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/bub.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/Player.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/Linux.tar.gz
 sleep 1
 tar -xzvf /tmp/config.tar.gz --overwrite -C /
 tar -xzvf /tmp/eqfa12.tar.gz --overwrite -C /
