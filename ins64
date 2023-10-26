@@ -63,6 +63,8 @@ touch /opt/logitechmediaserver-git/Logs/slimserver.log
 chown -R logitechms:logitechms /opt/logitechmediaserver-git
 echo 'logitechms ALL=(ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
 echo 'http ALL=(ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
+usermod -a -G audio http
+usermod -a -G audio logitechms
 
 echo "Download LMS"
 wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/logitechmediaserver-64.pkg.tar.xz
