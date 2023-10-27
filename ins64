@@ -58,6 +58,8 @@ wget https://raw.githubusercontent.com/quatmo/runesq/main/eqfa12.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/bub.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/Player.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/Linux.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/playlist_radio.tar.gz
+
 wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/caps.tar.gz
 wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/ladspa_share.tar.gz
 wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/ladspa_usr.tar.gz
@@ -89,6 +91,7 @@ tar -xzvf /tmp/eqfa12.tar.gz --overwrite -C /
 tar -xzvf /tmp/bub.tar.gz --overwrite -C /
 tar -xzvf /tmp/Player.tar.gz --overwrite -C /
 tar -xzvf /tmp/Linux.tar.gz --overwrite -C /
+tar -xzvf /tmp/playlist_radio.tar.gz --overwrite -C /
 sleep 0.3
 tar -xzvf /tmp/caps.tar.gz --overwrite -C /
 tar -xzvf /tmp/ladspa_share.tar.gz --overwrite -C /
