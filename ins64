@@ -50,65 +50,58 @@ pacman --noconfirm -S docker-compose
 pacman --noconfirm -S docker
 sleep 0.3
 
-echo "Add user"
-getent group logitechms &>/dev/null || groupadd -r logitechms >/dev/null
-getent passwd logitechms &>/dev/null || useradd -r -g logitechms -d /opt/logitechmediaserver-git -c 'Logitech Media Server' -s /bin/false logitechms >/dev/null
-mkdir -p /opt/logitechmediaserver-git/{cache,Logs,prefs{,/plugin},Plugins}
-touch /opt/logitechmediaserver-git/Logs/slimserver.log
-sleep 0.3
-echo "Download LMS"
 wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/logitechmediaserver-64.pkg.tar.xz
-sleep 0.3
-echo "Install LMS"
-pacman -U --noconfirm logitechmediaserver-64.pkg.tar.xz
-systemctl daemon-reload
-systemctl enable logitechmediaserver-git.service
-sleep 0.3
-echo "Download Squeezelite and Install"
-wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/sq64.tgz
-tar -xzf sq64.tgz --overwrite -C /opt/
-sleep 0.3
-
 wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/sq.service
 wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/sq.sh
-cp -f /tmp/sq.service /opt/sq/
-cp -f /tmp/sq.sh /opt/sq/
-echo "Install LMS - SQ Finished"
-
-sleep 0.3
+wget https://raw.githubusercontent.com/lovehifi/raudiolms-64bit/main/sq64.tgz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/config.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/eqfa12.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/bub.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/Player.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/Linux.tar.gz
-sleep 1
+wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/caps.tar.gz
+wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/ladspa_share.tar.gz
+wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/ladspa_usr.tar.gz
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/entrypoint.sh
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/tidal.service
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/env
+wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/docker-compose.yaml
+wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/eqfa12p.conf
+wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/eq12.conf
+sleep 0.3
+git clone https://github.com/GioF71/tidal-connect.git
+sleep 0.3
+getent group logitechms &>/dev/null || groupadd -r logitechms >/dev/null
+getent passwd logitechms &>/dev/null || useradd -r -g logitechms -d /opt/logitechmediaserver-git -c 'Logitech Media Server' -s /bin/false logitechms >/dev/null
+mkdir -p /opt/logitechmediaserver-git/{cache,Logs,prefs{,/plugin},Plugins}
+touch /opt/logitechmediaserver-git/Logs/slimserver.log
+
+sleep 0.3
+echo "Install"
+pacman -U --noconfirm /tmp/logitechmediaserver-64.pkg.tar.xz
+tar -xzvf /tmp/sq64.tgz --overwrite -C /opt/
+sleep 0.3
+cp -f /tmp/sq.service /etc/systemd/system/
+cp -f /tmp/sq.sh /opt/sq/
+sleep 0.3
 tar -xzvf /tmp/config.tar.gz --overwrite -C /
 tar -xzvf /tmp/eqfa12.tar.gz --overwrite -C /
 tar -xzvf /tmp/bub.tar.gz --overwrite -C /
 tar -xzvf /tmp/Player.tar.gz --overwrite -C /
 tar -xzvf /tmp/Linux.tar.gz --overwrite -C /
 sleep 0.3
-
-tar -xzf /tmp/caps.tar.gz --overwrite -C /
-tar -xzf /tmp/ladspa_share.tar.gz --overwrite -C /
-tar -xzf /tmp/ladspa_usr.tar.gz --overwrite -C /
-
-sleep 1
+tar -xzvf /tmp/caps.tar.gz --overwrite -C /
+tar -xzvf /tmp/ladspa_share.tar.gz --overwrite -C /
+tar -xzvf /tmp/ladspa_usr.tar.gz --overwrite -C /
+sleep 0.3
 systemctl daemon-reload
 systemctl start docker.service
 systemctl enable docker.service
+sleep 0.3
+sleep 0.3
+mv -f /tmp/tidal-connect /root/
+sleep 0.3
 
-
-echo "Clone Source"
-sleep 0.3
-git clone https://github.com/GioF71/tidal-connect.git
-cd /tmp
-sleep 0.3
-wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/entrypoint.sh
-wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/tidal.service
-wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/env
-wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/docker-compose.yaml
-sleep 0.3
 cp -f /tmp/entrypoint.sh /root/tidal-connect/bin/
 cp -f /tmp/tidal.service /etc/systemd/system/
 cp -f /tmp/env /root/tidal-connect/.env
@@ -175,14 +168,8 @@ input_file="/etc/alsa/conf.d/eqfa12p.conf"
 output_file="/tmp/eqfa12p_modified.conf"
 file="/srv/http/data/mpdconf/output.conf"
 sleep 0.3
-wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/caps.tar.gz
-wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/ladspa_share.tar.gz
-wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/ladspa_usr.tar.gz
-sleep 0.3
-wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/eqfa12p.conf
 cp -f /tmp/eqfa12p.conf /etc/alsa/conf.d/
 cp -f /etc/alsa/conf.d/eqfa12p.conf /etc/alsa/conf.d/eqfa12p.conf.backup
-wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/eq12.conf
 cp -f /tmp/eq12.conf /srv/http/data/mpdconf/
 sleep 0.3
 if [ -f "$file" ]; then
@@ -199,8 +186,8 @@ else
 fi
 
 cp -f /tmp/eqfa12p_modified.conf /etc/alsa/conf.d/eqfa12p.conf
-
 sleep 0.3
+cd ~
 wget -O - https://raw.githubusercontent.com/lovehifi/lms-modern-skin/main/install.sh | sh
 sleep 0.3
 echo 'MOZ_USE_XINPUT2 DEFAULT=1' | sudo tee -a /etc/security/pam_env.conf
