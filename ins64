@@ -206,4 +206,5 @@ systemctl restart sq.service
 sleep 0.3
 systemctl restart logitechmediaserver-git.service
 sleep 0.3
+systemctl disable localbrowser.service
 systemctl status logitechmediaserver-git.service
