@@ -202,6 +202,8 @@ cp -f /tmp/eqfa12p_modified.conf /etc/alsa/conf.d/eqfa12p.conf
 
 sleep 0.3
 wget -O - https://raw.githubusercontent.com/lovehifi/lms-modern-skin/main/install.sh | sh
+sleep 0.3
+echo 'MOZ_USE_XINPUT2 DEFAULT=1' | sudo tee -a /etc/security/pam_env.conf
 
 echo "Installation completed."
 sleep 0.3
