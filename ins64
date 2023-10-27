@@ -196,7 +196,7 @@ cd ~
 wget -O - https://raw.githubusercontent.com/lovehifi/lms-modern-skin/main/install.sh | sh
 sleep 0.3
 echo 'MOZ_USE_XINPUT2 DEFAULT=1' | sudo tee -a /etc/security/pam_env.conf
-
+chown -Rv logitechms:logitechms /mnt/PLAYLIST
 echo "Installation completed."
 systemctl daemon-reload
 sleep 0.3
