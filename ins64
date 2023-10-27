@@ -147,12 +147,14 @@ for line in "${lines_to_check[@]}"; do
     fi
 done
 echo "Configurations added"
+chmod -R 755 /srv/http/config/unit/*.service
+sleep 0.3
 cp -f /srv/http/config/unit/*.service /etc/systemd/system/
+sleep 0.3
 chmod -R 755 /etc/systemd/system/sq.service
 chmod -R 755 /opt/sq/sq.sh
 chmod -R 755 /srv/http/config/unit/*.sh
 chmod -R 755 /srv/http/eqfa12/unit/*.sh
-chmod -R 755 /srv/http/eqfa12/unit/*.service
 chmod -R 755 /root/tidal-connect/bin/entrypoint.sh
 chmod -R 755 /etc/systemd/system/tidal.service
 sleep 0.3
