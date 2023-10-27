@@ -31,7 +31,6 @@ fi
 
 echo "Install Lib"
 rm -f /var/lib/pacman/sync/*
-#pacman -Syy --noconfirm
 pacman -Syu --noconfirm --ignore dhcpcd
 sleep 0.3
 pacman -S --noconfirm perl
@@ -69,14 +68,15 @@ wget https://raw.githubusercontent.com/lovehifi/tidal-raudio-pi4/main/docker-com
 wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/eqfa12p.conf
 wget https://raw.githubusercontent.com/lovehifi/eqfa12/main/eq12.conf
 sleep 0.3
-git clone https://github.com/GioF71/tidal-connect.git
-sleep 0.3
+
 getent group logitechms &>/dev/null || groupadd -r logitechms >/dev/null
 getent passwd logitechms &>/dev/null || useradd -r -g logitechms -d /opt/logitechmediaserver-git -c 'Logitech Media Server' -s /bin/false logitechms >/dev/null
 mkdir -p /opt/logitechmediaserver-git/{cache,Logs,prefs{,/plugin},Plugins}
 touch /opt/logitechmediaserver-git/Logs/slimserver.log
-
 sleep 0.3
+git clone https://github.com/GioF71/tidal-connect.git
+sleep 0.3
+
 echo "Install"
 pacman -U --noconfirm /tmp/logitechmediaserver-64.pkg.tar.xz
 tar -xzvf /tmp/sq64.tgz --overwrite -C /opt/
@@ -195,15 +195,10 @@ sleep 0.3
 echo 'MOZ_USE_XINPUT2 DEFAULT=1' | sudo tee -a /etc/security/pam_env.conf
 
 echo "Installation completed."
-sleep 0.3
 systemctl daemon-reload
 sleep 0.3
 systemctl enable sq.service
-sleep 0.3
-
-systemctl restart sq.service
-sleep 0.3
-systemctl restart logitechmediaserver-git.service
+systemctl enable logitechmediaserver-git.service
 sleep 0.3
 systemctl disable localbrowser.service
-systemctl status logitechmediaserver-git.service
+
