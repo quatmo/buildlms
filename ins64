@@ -204,4 +204,7 @@ systemctl enable sq.service
 systemctl enable logitechmediaserver-git.service
 sleep 0.3
 systemctl disable localbrowser.service
+touch /boot/expand
+
+
 
