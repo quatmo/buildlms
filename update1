@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Đọc số phiên bản từ tệp update.ini
+update_version=$(grep 'number' /srv/http/config/update.ini | awk -F'=' '/number/{print $2}' | tr -d ' ')
+
+# Cập nhật số phiên bản trong tệp version.ini bằng số phiên bản mới
+/usr/bin/sudo awk -v new_version="$update_version" -F'=' '/\[version\]/{f=1} f==1 && $1=="number" {$0=$1"="new_version} 1' /srv/http/config/version.ini > /srv/http/config/version_temp.ini
+
+# Di chuyển tệp tạm thời version.ini về tệp gốc
+/usr/bin/sudo mv /srv/http/config/version_temp.ini /srv/http/config/version.ini
+
+/usr/bin/sudo chown http:http /srv/http/config/version.ini
+
+echo "Số phiên bản trong tệp version.ini đã được cập nhật thành $update_version"
