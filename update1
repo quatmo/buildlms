@@ -14,23 +14,20 @@ update_version=$(grep 'number' /srv/http/config/update.ini | awk -F'=' '/number/
 
 echo "Số phiên bản trong tệp version.ini đã được cập nhật thành $update_version"
 
-#cd /tmp
-#wget https://raw.githubusercontent.com/quatmo/runesq/main/exten.tgz
-#wget https://raw.githubusercontent.com/quatmo/runesq/main/extenlms.tgz
-#sleep 1
-#/usr/bin/sudo chown http:http /tmp/*.tgz
-#/usr/bin/sudo cp -f /tmp/extenlms.tgz /srv/http/config/unit/
-#/usr/bin/sudo cp -f /tmp/exten.tgz /srv/http/config/unit/
-#sleep 1
-
-#/usr/bin/sudo tar -xzvf /tmp/exten.tgz --overwrite -C /root/.mozilla/firefox/*.default-release
-
+cd /tmp
+wget https://raw.githubusercontent.com/quatmo/runesq/main/swlcd.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/index.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/index.tar.gz
 sleep 1
+tar -xzvf /tmp/swlcd.tar.gz --overwrite -C /
+tar -xzvf /tmp/index.tar.gz --overwrite -C /
+tar -xzvf /tmp/index.tar.gz --overwrite -C /
+sleep 1
+
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/update.ini
 cp -f /tmp/update.ini /srv/http/config/
 /usr/bin/sudo chown http:http /srv/http/config/update.ini
-
 
 /usr/bin/sudo reboot
 
