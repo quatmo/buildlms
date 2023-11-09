@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-#update_version=$(grep 'number' /srv/http/config/update.ini | cut -d '=' -f 2 | tr -d ' ')
+update_version=$(grep 'number' /srv/http/config/update.ini | cut -d '=' -f 2 | tr -d ' ')
 
-#sed -i "s/number=.*/number=$update_version/" /srv/http/config/version.ini
+sed -i "s/number=.*/number=$update_version/" /srv/http/config/version.ini
 
-#echo "Version number in version.ini updated to $update_version"
+echo "Version number in version.ini updated to $update_version"
 
 /usr/bin/sudo touch /tmp/updatedte
