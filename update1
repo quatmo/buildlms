@@ -13,5 +13,7 @@ update_version=$(grep 'number' /srv/http/config/update.ini | awk -F'=' '/number/
 
 echo "Số phiên bản trong tệp version.ini đã được cập nhật thành $update_version"
 
+touch /tmp/updated
+
 exit
 
