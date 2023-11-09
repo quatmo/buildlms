@@ -20,6 +20,15 @@ sleep 1
 /usr/bin/sudo chown /tmp/*.tgz
 /usr/bin/sudo cp -f /tmp/extenlms.tgz /srv/http/config/unit/
 /usr/bin/sudo cp -f /tmp/exten.tgz /srv/http/config/unit/
+sleep 1
+
+/usr/bin/sudo tar -xzvf /tmp/exten.tgz --overwrite -C /root/.mozilla/firefox/*.default-release
+
+sleep 1
+
+/usr/bin/sudo reboot
 
 exit
+
+
 
