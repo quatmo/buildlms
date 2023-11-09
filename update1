@@ -30,6 +30,7 @@ cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/update.ini
 cp -f /tmp/update.ini /srv/http/config/
 /usr/bin/sudo chown http:http /srv/http/config/update.ini
+/usr/bin/sudo chown http:http /srv/http/config/version.ini
 
 /usr/bin/sudo reboot
 
