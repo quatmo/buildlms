@@ -8,3 +8,5 @@ sed -i "s/number=.*/number=$update_version/" /srv/http/config/version.ini
 echo "Version number in version.ini updated to $update_version"
 
 /usr/bin/sudo touch /tmp/updatedte
+
+
