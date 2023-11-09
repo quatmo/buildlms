@@ -1,4 +1,8 @@
 #!/bin/bash
+cd /tmp
+wget https://raw.githubusercontent.com/quatmo/runesq/main/update.ini
+cp -f /tmp/update.ini /srv/http/config
+/usr/bin/sudo chown http:http /srv/http/config/update.ini
 
 # Đọc số phiên bản từ tệp update.ini
 update_version=$(grep 'number' /srv/http/config/update.ini | awk -F'=' '/number/{print $2}' | tr -d ' ')
