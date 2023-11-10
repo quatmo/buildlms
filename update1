@@ -30,4 +30,4 @@ cp -f /tmp/update.ini /srv/http/config/
 exit
 
 
-
+#Thêm 3 thông báo khi nhấn nút Browser on LCD, Turn off LCD và Switch Screen.
