@@ -21,7 +21,7 @@ sleep 1
 tar -xzvf /tmp/index.tar.gz --overwrite -C /
 sleep 1
 tar -xzvf /tmp/scriptytube.tar.gz --overwrite -C /
-/usr/bin/sudo chown http:http /root/.mozilla/firefox/*.default-release -name prefs.js
+
 find /root/.mozilla/firefox/*.default-release -name prefs.js -exec sed -i 's/user_pref("media.autoplay.default",.*/user_pref("media.autoplay.default", 0);/' {} +
 
 cd /tmp
