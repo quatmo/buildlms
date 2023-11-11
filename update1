@@ -16,11 +16,11 @@ echo "Số phiên bản trong tệp version.ini đã được cập nhật thàn
 
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/index.tar.gz
-wget https://raw.githubusercontent.com/quatmo/runesq/main/scriptytube6.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/scriptytube7.tar.gz
 sleep 1
 tar -xzvf /tmp/index.tar.gz --overwrite -C /
 sleep 1
-tar -xzvf /tmp/scriptytube6.tar.gz --overwrite -C /
+tar -xzvf /tmp/scriptytube7.tar.gz --overwrite -C /
 /usr/bin/sudo /usr/bin/systemctl stop localbrowser.service
 
 #find /root/.mozilla/firefox/*.default-release -name prefs.js -exec sed -i 's/user_pref("media.autoplay.default",.*/user_pref("media.autoplay.default", 0);/' {} +
