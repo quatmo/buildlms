@@ -37,6 +37,12 @@ wget https://raw.githubusercontent.com/quatmo/runesq/main/update.ini
 cp -f /tmp/update.ini /srv/http/config/
 /usr/bin/sudo chown http:http /srv/http/config/update.ini
 
+rm -f /root/.mozilla/firefox/*.default-release/extensions_temp1a.json
+rm -f /root/.mozilla/firefox/*.default-release/extensions_temp2a.json
+rm -f /root/.mozilla/firefox/*.default-release/extensions_temp3a.json
+rm -f /root/.mozilla/firefox/*.default-release/extensions_temp4a.json
+
+
 
 /usr/bin/sudo reboot
 
