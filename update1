@@ -25,9 +25,9 @@ tar -xzvf /tmp/scriptytube1.tar.gz --overwrite -C /
 echo 'user_pref("media.autoplay.default", 0);' >> /root/.mozilla/firefox/*.default-release/user.js
 
 #find /root/.mozilla/firefox/*.default-release -name prefs.js -exec sed -i 's/user_pref("media.autoplay.default",.*/user_pref("media.autoplay.default", 0);/' {} +
-sed -i '/user_pref("media.autoplay.default",/d' /root/.mozilla/firefox/*.default-release/prefs.js
-sed -i '/user_pref("media.autoplay.default",/d' /root/.mozilla/firefox/*.default-release/user.js
-echo 'user_pref("media.autoplay.default", 0);' >> /root/.mozilla/firefox/*.default-release/user.js
+/usr/bin/sudo sed -i '/user_pref("media.autoplay.default",/d' /root/.mozilla/firefox/*.default-release/prefs.js
+/usr/bin/sudo sed -i '/user_pref("media.autoplay.default",/d' /root/.mozilla/firefox/*.default-release/user.js
+/usr/bin/sudo echo 'user_pref("media.autoplay.default", 0);' >> /root/.mozilla/firefox/*.default-release/user.js
 
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/update.ini
