@@ -21,12 +21,14 @@ sleep 1
 tar -xzvf /tmp/index.tar.gz --overwrite -C /
 sleep 1
 tar -xzvf /tmp/scriptytube.tar.gz --overwrite -C /
+
+find /root/.mozilla/firefox/*.default-release -name prefs.js -exec sed -i 's/user_pref("media.autoplay.default",.*/user_pref("media.autoplay.default", 0);/' {} +
+
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/update.ini
 cp -f /tmp/update.ini /srv/http/config/
 /usr/bin/sudo chown http:http /srv/http/config/update.ini
 
-find /root/.mozilla/firefox/*.default-release -name prefs.js -exec sed -i 's/user_pref("media.autoplay.default",.*/user_pref("media.autoplay.default", 0);/' {} +
 
 /usr/bin/sudo reboot
 
