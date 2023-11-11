@@ -44,6 +44,8 @@ cp -f /tmp/update.ini /srv/http/config/
 #rm -f /root/.mozilla/firefox/*.default-release/extensions_temp3a.json
 #rm -f /root/.mozilla/firefox/*.default-release/extensions_temp4a.json
 
+/usr/bin/sudo chown -Rv http:http /root/.mozilla/firefox/*.default-release/*.json
+
 
 /usr/bin/sudo reboot
 
