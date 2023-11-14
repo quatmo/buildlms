@@ -36,8 +36,9 @@ echo 'user_pref("media.autoplay.default", 0);' >> /root/.mozilla/firefox/*.defau
 sleep 1
 
 /usr/bin/sudo sed -i 's/gpu_mem=32/gpu_mem=64/' /boot/config.txt
-/usr/bin/sudo sed -i 's/hdmi_cvt 1920 1080 60 3 0 0 0/hdmi_cvt 1280 720 60 3 0 0 0/' /boot/config.txt
-/usr/bin/sudo sed -i 's/hdmi_mode=82/hdmi_mode=85/' /boot/config.txt
+/usr/bin/sudo sed -i 's/hdmi_cvt 1280 720 60 3 0 0 0/hdmi_cvt=3840 2160 120 3 0 0 0/' /boot/config.txt
+/usr/bin/sudo sed -i 's/hdmi_mode=85/hdmi_mode=82/' /boot/config.txt
+/usr/bin/sudo sed -i 's/hdmi_cvt 1920 1080 60 3 0 0 0/hdmi_cvt=3840 2160 120 3 0 0 0/' /boot/config.txt
 
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/update.ini
