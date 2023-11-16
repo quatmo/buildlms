@@ -13,13 +13,13 @@ echo "version.ini $update_version"
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/index.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/scriptytube10.tar.gz
-wget https://raw.githubusercontent.com/quatmo/runesq/main/startLCD4.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/startLCD6.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/bubv9.tar.gz
 sleep 0.5
 tar -xzvf /tmp/index.tar.gz --overwrite -C /
 sleep 0.5
 tar -xzvf /tmp/scriptytube10.tar.gz --overwrite -C /
-tar -xzvf /tmp/startLCD4.tar.gz --overwrite -C /
+tar -xzvf /tmp/startLCD6.tar.gz --overwrite -C /
 sleep 0.5
 tar -xzvf /tmp/bubv9.tar.gz --overwrite -C /
 
@@ -47,7 +47,7 @@ if grep -q "max_framebuffers=2" "/boot/config.txt"; then
     /usr/bin/sudo sed -i '/max_framebuffers=2/d' "/boot/config.txt"
 fi
 
-config_1="hdmi_drive=1
+config_1="hdmi_drive=2
 hdmi_group=1
 hdmi_mode=4
 hdmi_cvt=1440 720 60 3 0 0 0"
