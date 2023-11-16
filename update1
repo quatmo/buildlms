@@ -50,7 +50,7 @@ fi
 config_1="hdmi_drive=2
 hdmi_group=1
 hdmi_mode=4
-hdmi_cvt=1440 720 60 3 0 0 0"
+hdmi_cvt=1280 720 60 3 0 0 0"
 echo "$config_1" >> "/boot/config.txt"
 
 cd /tmp
