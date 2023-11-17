@@ -30,7 +30,9 @@ sleep 0.5
 tar -xzvf /tmp/hdmipixel.tar.gz --overwrite -C /
 sleep 0.5
 tar -xzvf /tmp/hdmi_drive.tar.gz --overwrite -C /
-#tar -xzvf /tmp/xorg1.tar.gz --overwrite -C /
+#cp -f /tmp/xorg1.tar.gz /srv/http/config/unit/
+#/usr/bin/sudo chown http:http /srv/http/config/unit/xorg1.tar.gz
+
 sleep 0.5
 
 
