@@ -13,12 +13,13 @@ echo "version.ini $update_version"
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/scriptytube10.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/bubv9.tar.gz
-wget https://raw.githubusercontent.com/quatmo/runesq/main/index4.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/index5.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/startLCD11.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmipixel.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmi_drive.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/xorg.tar.gz
 sleep 0.5
-tar -xzvf /tmp/index4.tar.gz --overwrite -C /
+tar -xzvf /tmp/index5.tar.gz --overwrite -C /
 sleep 0.5
 tar -xzvf /tmp/scriptytube10.tar.gz --overwrite -C /
 sleep 0.5
@@ -29,6 +30,7 @@ sleep 0.5
 tar -xzvf /tmp/hdmipixel.tar.gz --overwrite -C /
 sleep 0.5
 tar -xzvf /tmp/hdmi_drive.tar.gz --overwrite -C /
+tar -xzvf /tmp/xorg.tar.gz --overwrite -C /
 sleep 0.5
 
 
