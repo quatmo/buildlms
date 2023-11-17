@@ -17,7 +17,7 @@ wget https://raw.githubusercontent.com/quatmo/runesq/main/index6.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/startLCD11.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmipixel2.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmi_drive.tar.gz
-#wget https://raw.githubusercontent.com/quatmo/runesq/main/xorg1.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/xorg1.tar.gz
 sleep 0.5
 tar -xzvf /tmp/index6.tar.gz --overwrite -C /
 sleep 0.5
