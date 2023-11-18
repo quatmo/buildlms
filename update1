@@ -64,6 +64,8 @@ if grep -q "max_framebuffers=2" "/boot/config.txt"; then
 fi
 
 config_1="hdmi_drive=2
+hdmi_force_hotplug=1
+hdmi_force_mode=1
 hdmi_group=1
 hdmi_mode=4"
 echo "$config_1" >> "/boot/config.txt"
