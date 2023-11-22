@@ -19,6 +19,12 @@ wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmipixel4.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmi_drive.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/xorg1.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/script_ad1.tar.gz
+
+wget https://raw.githubusercontent.com/quatmo/runesq/main/sethtml.tgz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/setpm.tgz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/setweb.tgz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/startup.tgz
+
 wget https://raw.githubusercontent.com/quatmo/runesq/main/addon-adblock-for-youtube-latest.xpi
 wget https://raw.githubusercontent.com/quatmo/runesq/main/addon-youtubeadsblocker-latest.xpi
 sleep 0.5
@@ -40,8 +46,10 @@ cp -f /tmp/addon-adblock-for-youtube-latest.xpi /root/
 cp -f /tmp/addon-youtubeadsblocker-latest.xpi /root/
 sleep 0.5
 /usr/bin/sudo chown http:http /srv/http/config/unit/xorg1.tar.gz
-
-sleep 0.5
+tar -xzvf /tmp/sethtml.tgz --overwrite -C /opt/logitechmediaserver-git/HTML/EN/settings/server/
+tar -xzvf /tmp/setpm.tgz --overwrite -C /opt/logitechmediaserver-git/Slim/Web/Settings/Server/
+tar -xzvf /tmp/setweb.tgz --overwrite -C /opt/logitechmediaserver-git/Slim/Web/
+tar -xzvf /tmp/startup.tgz --overwrite -C /srv/http/config/unit/
 
 
 /usr/bin/sudo /usr/bin/systemctl stop localbrowser.service
