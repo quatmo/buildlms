@@ -44,16 +44,22 @@ tar -xzvf /tmp/tidaldns.tar.gz --overwrite -C /
 cp -f /tmp/xorg1.tar.gz /srv/http/config/unit/
 sleep 0.5
 cp -f /tmp/addon-adblock-for-youtube-latest.xpi /root/
+sleep 0.5
 cp -f /tmp/addon-youtubeadsblocker-latest.xpi /root/
 sleep 0.5
 /usr/bin/sudo chown http:http /srv/http/config/unit/xorg1.tar.gz
+sleep 0.5
 tar -xzvf /tmp/sethtml.tgz --overwrite -C /opt/logitechmediaserver-git/HTML/EN/settings/server/
+sleep 0.5
 tar -xzvf /tmp/setpm.tgz --overwrite -C /opt/logitechmediaserver-git/Slim/Web/Settings/Server/
+sleep 0.5
 tar -xzvf /tmp/setweb.tgz --overwrite -C /opt/logitechmediaserver-git/Slim/Web/
+sleep 0.5
 tar -xzvf /tmp/startup.tgz --overwrite -C /srv/http/config/unit/
-
+sleep 0.5
 
 /usr/bin/sudo /usr/bin/systemctl stop localbrowser.service
+sleep 0.5
 /usr/bin/sudo chown -Rv http:http /root/.mozilla/firefox/*/prefs.js
 /usr/bin/sudo chown -Rv http:http /root/.mozilla/firefox/*/user.js
 /usr/bin/sudo chown -Rv http:http /root/.mozilla/firefox/*.default-release/*.json
