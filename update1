@@ -13,7 +13,7 @@ echo "version.ini $update_version"
 cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/scriptytube10.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/bubv9.tar.gz
-wget https://raw.githubusercontent.com/quatmo/runesq/main/index7.tar.gz
+wget https://raw.githubusercontent.com/quatmo/runesq/main/index7.tgz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/startLCD16.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmipixel4.tar.gz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/hdmi_drive.tar.gz
@@ -28,7 +28,7 @@ wget https://raw.githubusercontent.com/quatmo/runesq/main/tidaldns.tgz
 wget https://raw.githubusercontent.com/quatmo/runesq/main/addon-adblock-for-youtube-latest.xpi
 wget https://raw.githubusercontent.com/quatmo/runesq/main/addon-youtubeadsblocker-latest.xpi
 sleep 0.5
-tar -xzvf /tmp/index7.tar.gz --overwrite -C /
+tar -xzvf /tmp/index7.tar.gz --overwrite -C /srv/http/config/
 sleep 0.5
 tar -xzvf /tmp/scriptytube10.tar.gz --overwrite -C /
 sleep 0.5
