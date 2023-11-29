@@ -39,8 +39,11 @@ sleep 0.5
 tar -xzvf /tmp/hdmipixel4.tar.gz --overwrite -C /
 sleep 0.5
 tar -xzvf /tmp/hdmi_drive.tar.gz --overwrite -C /
+sleep 0.3
 tar -xzvf /tmp/script_ad1.tar.gz --overwrite -C /
+sleep 0.3
 tar -xzvf /tmp/tidaldns.tar.gz --overwrite -C /
+sleep 0.3
 cp -f /tmp/xorg1.tar.gz /srv/http/config/unit/
 sleep 0.5
 cp -f /tmp/addon-adblock-for-youtube-latest.xpi /root/
