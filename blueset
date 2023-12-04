@@ -4,8 +4,8 @@
 # gnen sudo tar -xzvf --overwrite -C /
 cd /tmp
 
-/usr/bin/sudo tar -xzvf /media/BLUE/etc1.tar.gz --overwrite -C /
-/usr/bin/sudo tar -xzvf /media/BLUE/etc2.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUEPLAYER/BLUE/etc1.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUEPLAYER/BLUE/etc2.tar.gz --overwrite -C /
 sleep 0.3
 mkdir -p /data/INTERNAL/VN
 mkdir -p /data/INTERNAL/CDTEST
