@@ -51,8 +51,7 @@ sudo apt-get install -y default-jre
 sleep 0.3
 /usr/bin/sudo ln -s /home/volumio/upnp/upnp.service /etc/systemd/system/upnp.service
 sleep 0.3
-/usr/bin/sudo -v ; curl https://rclone.org/install.sh | sudo bash
-sleep 0.3
+
 /usr/bin/sudo tar -xzvf /tmp/BLUE/etcfuse.tar.gz --overwrite -C /
 sleep 0.3
 #sudo systemctl stop mpd.service
@@ -63,4 +62,5 @@ sleep 0.3
 /usr/bin/sudo tar -xzvf /tmp/BLUE/tag_cache.tar.gz --overwrite -C /
 sleep 0.3
 
-
+/usr/bin/sudo -v ; curl https://rclone.org/install.sh | sudo bash
+sleep 0.3
