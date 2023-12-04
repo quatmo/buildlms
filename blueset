@@ -41,7 +41,10 @@ sudo tar -xzvf /media/BLUE/upnp.tar.gz --overwrite -C /
 sleep 0.3
 sudo apt-get install -y fuse3
 sudo apt-get install -y mc
+sleep 0.3
 sudo ln -s /home/volumio/upnp/upnp.service /etc/systemd/system/upnp.service
+sleep 0.3
 sudo -v ; curl https://rclone.org/install.sh | sudo bash
+sleep 0.3
 sudo tar -xzvf /media/BLUE/etcfuse.tar.gz --overwrite -C /
 sudo tar -xzvf /media/BLUE/tag_cache.tar.gz --overwrite -C /
