@@ -3,8 +3,8 @@
 # nen sudo tar -czvf xx.tar.gz
 # gnen sudo tar -xzvf --overwrite -C /
 
-sudo tar -xzvf /media/BLUE/etc1.tar.gz --overwrite -C /
-sudo tar -xzvf /media/BLUE/etc2.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUE/etc1.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUE/etc2.tar.gz --overwrite -C /
 sleep 0.3
 mkdir -p /data/INTERNAL/VN
 mkdir -p /data/INTERNAL/CDTEST
@@ -16,48 +16,49 @@ mkdir -p /data/INTERNAL/DSD
 mkdir -p /data/INTERNAL/TL
 sleep 0.3
 cd /etc/systemd/system/
-sudo ln -s /etc/.s/slibbol.service slibbol.service
-sudo ln -s /etc/.s/slibcdt.service slibcdt.service
-sudo ln -s /etc/.s/slibhir.service slibhir.service
-sudo ln -s /etc/.s/slibmq.service slibmq.service
-sudo ln -s /etc/.s/slibse.service slibse.service
-sudo ln -s /etc/.s/slimone.service slimone.service
-sudo ln -s /etc/.s/volds.service slibthai.service
-sudo ln -s /etc/.s/volds.service volds.service
+/usr/bin/sudo ln -s /etc/.s/slibbol.service slibbol.service
+/usr/bin/sudo ln -s /etc/.s/slibcdt.service slibcdt.service
+/usr/bin/sudo ln -s /etc/.s/slibhir.service slibhir.service
+/usr/bin/sudo ln -s /etc/.s/slibmq.service slibmq.service
+/usr/bin/sudo ln -s /etc/.s/slibse.service slibse.service
+/usr/bin/sudo ln -s /etc/.s/slimone.service slimone.service
+/usr/bin/sudo ln -s /etc/.s/volds.service slibthai.service
+/usr/bin/sudo ln -s /etc/.s/volds.service volds.service
 sleep 0.3
-sudo systemctl daemon-reload
-sudo systemctl enable slibcdt.service
-sudo systemctl enable slibbol.service
-sudo systemctl enable slibhir.service
-sudo systemctl enable slibmq.service
-sudo systemctl enable slibse.service
-sudo systemctl enable slimone.service
-sudo systemctl enable slibthai.service
-sudo systemctl enable volds.service
+/usr/bin/sudo systemctl daemon-reload
+/usr/bin/sudo systemctl enable slibcdt.service
+/usr/bin/sudo systemctl enable slibbol.service
+/usr/bin/sudo systemctl enable slibhir.service
+/usr/bin/sudo systemctl enable slibmq.service
+/usr/bin/sudo systemctl enable slibse.service
+/usr/bin/sudo systemctl enable slimone.service
+/usr/bin/sudo systemctl enable slibthai.service
+/usr/bin/sudo systemctl enable volds.service
 sleep 0.3
-sudo tar -xzvf /media/BLUE/binimg.tar.gz --overwrite -C /
-sudo tar -xzvf /media/BLUE/imgclone.tar.gz --overwrite -C /
-sudo tar -xzvf /media/BLUE/upnp.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUE/binimg.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUE/imgclone.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUE/upnp.tar.gz --overwrite -C /
 sleep 0.3
-sudo apt-get update
+/usr/bin/sudo apt-get update
 sleep 0.3
-sudo apt-get install -y fuse3
+/usr/bin/sudo apt-get install -y fuse3
 sleep 0.3
-sudo apt-get install -y mc
-sudo apt-get install -y htop
+/usr/bin/sudo apt-get install -y mc
+/usr/bin/sudo apt-get install -y htop
 sleep 0.3
 sudo apt-get install -y default-jre
 sleep 0.3
-sudo ln -s /home/volumio/upnp/upnp.service /etc/systemd/system/upnp.service
+/usr/bin/sudo ln -s /home/volumio/upnp/upnp.service /etc/systemd/system/upnp.service
 sleep 0.3
-sudo -v ; curl https://rclone.org/install.sh | sudo bash
+/usr/bin/sudo -v ; curl https://rclone.org/install.sh | sudo bash
 sleep 0.3
-sudo tar -xzvf /media/BLUE/etcfuse.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUE/etcfuse.tar.gz --overwrite -C /
 sleep 0.3
-sudo systemctl stop mpd.service
+#sudo systemctl stop mpd.service
 sleep 0.3
-sudo pkill mpd
+/usr/bin/sudo /usr/bin/killall mpd
+
 sleep 0.3
-sudo tar -xzvf /media/BLUE/tag_cache.tar.gz --overwrite -C /
+/usr/bin/sudo tar -xzvf /media/BLUE/tag_cache.tar.gz --overwrite -C /
 sleep 0.3
 
