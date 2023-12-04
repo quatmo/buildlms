@@ -69,7 +69,7 @@ sleep 0.3
 /usr/bin/sudo -v ; curl https://rclone.org/install.sh | sudo bash
 sleep 0.3
 
-echo "Completed. Tiếp theo bác bấm phím q, sau đó cài tiếp tắt scan Internal, reboot máy lại!"
+echo "Completed. Tiếp theo bác cài tắt scan Internal xong reboot máy lại!"
 
 rclone config
 
