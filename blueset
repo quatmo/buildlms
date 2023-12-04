@@ -2,7 +2,8 @@
 # wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/blueset | sh
 # nen sudo tar -czvf xx.tar.gz
 # gnen sudo tar -xzvf --overwrite -C /
-cp /media/BLUEPLAYER/BLUE /tmp/
+mkdir -p /tmp/BLUE
+cp -r /media/BLUEPLAYER/BLUE/* /tmp/BLUE/
 /usr/bin/sudo tar -xzvf /tmp/BLUE/etc1.tar.gz --overwrite -C /
 /usr/bin/sudo tar -xzvf /tmp/BLUE/etc2.tar.gz --overwrite -C /
 cd /tmp
