@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# nen sudo tar -czvf xx.tar.gz
+# gnen sudo tar -xzvf --overwrite -C /
+sudo apt-get install -y mc
+sudo apt-get install -y fuse3
+
+
+sudo tar -xzvf /media/BLUE/etc1.tar.gz --overwrite -C /
+sudo tar -xzvf /media/BLUE/etc2.tar.gz --overwrite -C /
+sudo tar -xzvf /media/BLUE/binimg.tar.gz --overwrite -C /
+sudo tar -xzvf /media/BLUE/imgclone.tar.gz --overwrite -C /
+sudo tar -xzvf /media/BLUE/upnp.tar.gz --overwrite -C /
+sudo tar -xzvf /media/BLUE/tag_cache.tar.gz --overwrite -C /
+sudo tar -xzvf /media/BLUE/etcfuse.tar.gz --overwrite -C /
+
+
+mkdir -p /data/INTERNAL/VN
+mkdir -p /data/INTERNAL/CDTEST
+mkdir -p /data/INTERNAL/HIRES
+mkdir -p /data/INTERNAL/INS
+mkdir -p /data/INTERNAL/BLUE
+mkdir -p /data/INTERNAL/MUSICONE
+mkdir -p /data/INTERNAL/DSD
+mkdir -p /data/INTERNAL/TL
+
+
+cd /etc/systemd/system/
+sudo ln -s /etc/.s/slibbol.service slibbol.service
+sudo ln -s /etc/.s/slibcdt.service slibcdt.service
+sudo ln -s /etc/.s/slibhir.service slibhir.service
+sudo ln -s /etc/.s/slibmq.service slibmq.service
+sudo ln -s /etc/.s/slibse.service slibse.service
+sudo ln -s /etc/.s/slimone.service slimone.service
+sudo ln -s /etc/.s/volds.service slibthai.service
+sudo ln -s /etc/.s/volds.service volds.service
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable slibcdt.service
+sudo systemctl enable slibbol.service
+sudo systemctl enable slibhir.service
+sudo systemctl enable slibmq.service
+sudo systemctl enable slibse.service
+sudo systemctl enable slimone.service
+sudo systemctl enable slibthai.service
+sudo systemctl enable volds.service
+
+sudo -v ; curl https://rclone.org/install.sh | sudo bash
+sudo ln -s /home/volumio/upnp/upnp.service /etc/systemd/system/upnp.service
+
