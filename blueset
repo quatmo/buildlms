@@ -47,4 +47,7 @@ sleep 0.3
 sudo -v ; curl https://rclone.org/install.sh | sudo bash
 sleep 0.3
 sudo tar -xzvf /media/BLUE/etcfuse.tar.gz --overwrite -C /
+#sudo systemctl stop mpd.service
+sudo pkill mpd
+sleep 0.3
 sudo tar -xzvf /media/BLUE/tag_cache.tar.gz --overwrite -C /
