@@ -24,7 +24,7 @@ cd /etc/systemd/system/
 /usr/bin/sudo ln -s /etc/.s/slibmq.service slibmq.service
 /usr/bin/sudo ln -s /etc/.s/slibse.service slibse.service
 /usr/bin/sudo ln -s /etc/.s/slimone.service slimone.service
-/usr/bin/sudo ln -s /etc/.s/volds.service slibthai.service
+/usr/bin/sudo ln -s /etc/.s/slibthai.service slibthai.service
 /usr/bin/sudo ln -s /etc/.s/volds.service volds.service
 sleep 0.3
 /usr/bin/sudo systemctl daemon-reload
