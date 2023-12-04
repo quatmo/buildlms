@@ -24,8 +24,8 @@ cd /etc/systemd/system/
 /usr/bin/sudo ln -s /etc/.s/slibmq.service slibmq.service
 /usr/bin/sudo ln -s /etc/.s/slibse.service slibse.service
 /usr/bin/sudo ln -s /etc/.s/slimone.service slimone.service
-/usr/bin/sudo ln -s /etc/.s/slibthai.service slibthai.service
 /usr/bin/sudo ln -s /etc/.s/volds.service volds.service
+/usr/bin/sudo ln -s /etc/.s/slibthai.service slibthai.service
 sleep 0.3
 /usr/bin/sudo systemctl daemon-reload
 /usr/bin/sudo systemctl enable slibcdt.service
@@ -34,8 +34,8 @@ sleep 0.3
 /usr/bin/sudo systemctl enable slibmq.service
 /usr/bin/sudo systemctl enable slibse.service
 /usr/bin/sudo systemctl enable slimone.service
-/usr/bin/sudo systemctl enable slibthai.service
 /usr/bin/sudo systemctl enable volds.service
+/usr/bin/sudo systemctl enable slibthai.service
 sleep 0.3
 /usr/bin/sudo tar -xzvf /tmp/BLUE/binimg.tar.gz --overwrite -C /
 /usr/bin/sudo tar -xzvf /tmp/BLUE/imgclone.tar.gz --overwrite -C /
