@@ -82,4 +82,5 @@ rclone config
 /usr/bin/sudo systemctl restart volds.service
 /usr/bin/sudo systemctl restart slibthai.service
 
+echo "Completed. Tiếp theo bác cài tắt scan Internal xong reboot máy lại!"
 
