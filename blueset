@@ -14,7 +14,7 @@ sleep 0.3
 mkdir -p /data/INTERNAL/VN
 mkdir -p /data/INTERNAL/CDTEST
 mkdir -p /data/INTERNAL/HIRES
-mkdir -p /data/INTERNAL/INS
+# mkdir -p /data/INTERNAL/INS
 mkdir -p /data/INTERNAL/BLUE
 mkdir -p /data/INTERNAL/MUSICONE
 mkdir -p /data/INTERNAL/DSD
