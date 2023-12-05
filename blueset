@@ -18,7 +18,7 @@ mkdir -p /data/INTERNAL/INS
 mkdir -p /data/INTERNAL/BLUE
 mkdir -p /data/INTERNAL/MUSICONE
 mkdir -p /data/INTERNAL/DSD
-mkdir -p /data/INTERNAL/TL
+mkdir -p /data/INTERNAL/THAI
 sleep 0.3
 cd /etc/systemd/system/
 /usr/bin/sudo ln -s /etc/.s/slibbol.service slibbol.service
