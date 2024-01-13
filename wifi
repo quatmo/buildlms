@@ -9,3 +9,7 @@ sudo rm -rf RTL8188GU
 sudo dkms add -m 8188gu -v 1.0.1 
 sudo dkms build -m 8188gu -v 1.0.1
 sudo dkms install -m 8188gu -v 1.0.1
+sudo dkms status
+
+sleep 3
+reboot
