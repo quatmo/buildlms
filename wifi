@@ -1,0 +1,11 @@
+#!/bin/bash
+# wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/wifi | sh
+sudo apt-get update
+sudo apt-get install -y dkms
+cd /usr/src
+sudo git clone https://github.com/wandercn/RTL8188GU.git
+sudo mv RTL8188GU/8188gu-1.0.1 8188gu-1.0.1
+sudo rm -rf RTL8188GU
+sudo dkms add -m 8188gu -v 1.0.1 
+sudo dkms build -m 8188gu -v 1.0.1
+sudo dkms install -m 8188gu -v 1.0.1
