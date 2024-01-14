@@ -680,7 +680,7 @@ ControllerMpd.prototype.mpdEstablish = function() {
                 //self.checkIfMpdRequiresRescan();
             }, 2500)
             setTimeout(() => {
-                self.checkUSBDrives();
+                //self.checkUSBDrives();
                 self.listAlbums();
                 self.getMyCollectionStats();
             }, 5000);
@@ -1870,7 +1870,8 @@ ControllerMpd.prototype.rescanDb = function() {
     var self = this;
 
     self.commandRouter.pushToastMessage('success', self.commandRouter.getI18nString('COMMON.MY_MUSIC'), self.commandRouter.getI18nString('COMMON.RESCAN_DB'));
-    return self.sendMpdCommand('rescan', []);
+    // return self.sendMpdCommand('rescan', []); //volki
+	return this.sendMpdCommand('update', ['USB', 'NAS']); //volki
 };
 
 ControllerMpd.prototype.updateDb = function(data) {
@@ -4014,7 +4015,8 @@ ControllerMpd.prototype.checkIfMpdRequiresRescan = function() {
             if (!stdout.length) {
                 self.logger.info('MPD Database is empty, triggering rescan');
                 try {
-                    execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000 });
+                   // execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000 }); //volki
+		  return this.sendMpdCommand('update', ['USB', 'NAS']); //volki
                 } catch (e) {
                     self.logger.error('Failed to trigger MPD rescan: ' + e);
                 }
