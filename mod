@@ -13,6 +13,14 @@ sleep 0.3
 /usr/bin/sudo chown volumio:volumio /volumio/app/plugins/music_service/mpd/index.js
 sleep 0.3
 
+wget https://raw.githubusercontent.com/quatmo/runesq/main/up/networkfs_index.js
+sleep 0.3
+rm /volumio/app/plugins/system_controller/networkfs/index.js
+cp -f /tmp/networkfs_index.js /volumio/app/plugins/system_controller/networkfs/index.js
+sleep 0.3
+/usr/bin/sudo chown volumio:volumio /volumio/app/plugins/system_controller/networkfs/index.js
+sleep 0.3
+
 /usr/bin/sudo /bin/systemctl restart volumio.service
 
 
