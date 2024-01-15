@@ -1,0 +1,10 @@
+#!/bin/bash
+# wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/plugin | sh
+git clone https://github.com/volumio/volumio-plugins-sources.git
+cd volumio-plugins-sources.git
+cd spotify
+volumio plugin install
+cd ..
+cd touch_display
+volumio plugin install
+cd ..
