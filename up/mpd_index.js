@@ -118,6 +118,7 @@ ControllerMpd.prototype.updateMpdDB = function() {
     this.logger.info('Update mpd DB');
     //return this.sendMpdCommand('update', []);
     return this.sendMpdCommand('update', ['USB']); //volki
+	return this.sendMpdCommand('update', ['NAS']); //volki
 };
 
 ControllerMpd.prototype.addPlay = function(fileName) {
