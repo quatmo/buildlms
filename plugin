@@ -4,7 +4,9 @@ git clone https://github.com/volumio/volumio-plugins-sources.git
 cd volumio-plugins-sources.git
 cd spotify
 volumio plugin install
+y
 cd ..
 cd touch_display
 volumio plugin install
+y
 cd ..
