@@ -117,7 +117,7 @@ ControllerMpd.prototype.disableOutput = function(output) {
 ControllerMpd.prototype.updateMpdDB = function() {
     this.logger.info('Update mpd DB');
     //return this.sendMpdCommand('update', []);
-    return this.sendMpdCommand('update', ['USB', 'NAS']); //volki
+    return this.sendMpdCommand('update', ['USB']); //volki
 };
 
 ControllerMpd.prototype.addPlay = function(fileName) {
@@ -1871,14 +1871,14 @@ ControllerMpd.prototype.rescanDb = function() {
 
     self.commandRouter.pushToastMessage('success', self.commandRouter.getI18nString('COMMON.MY_MUSIC'), self.commandRouter.getI18nString('COMMON.RESCAN_DB'));
     // return self.sendMpdCommand('rescan', []); //volki
-	return this.sendMpdCommand('update', ['USB', 'NAS']); //volki
+	return this.sendMpdCommand('update', ['USB']); //volki
 };
 
 ControllerMpd.prototype.updateDb = function(data) {
     var self = this;
     var pos = '';
     var message = self.commandRouter.getI18nString('COMMON.SCAN_DB');
-    return this.sendMpdCommand('update', ['USB', 'NAS']); //volki
+    return this.sendMpdCommand('update', ['USB']); //volki
     // if (data != undefined) {
     //     pos = data.replace('music-library/', '');
     //     message = pos + ': ' + message;
@@ -4016,7 +4016,7 @@ ControllerMpd.prototype.checkIfMpdRequiresRescan = function() {
                 self.logger.info('MPD Database is empty, triggering rescan');
                 try {
                    // execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000 }); //volki
-		  return this.sendMpdCommand('update', ['USB', 'NAS']); //volki
+				   return this.sendMpdCommand('update', ['USB']); //volki
                 } catch (e) {
                     self.logger.error('Failed to trigger MPD rescan: ' + e);
                 }
