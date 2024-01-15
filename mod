@@ -32,4 +32,5 @@ sleep 0.3
 
 /usr/bin/sudo /bin/systemctl restart volumio.service
 
+# sudo touch /boot/user_data && sudo touch /boot/factory_reset
 
