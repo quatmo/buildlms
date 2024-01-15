@@ -3,7 +3,7 @@
 # sudo tar -czvf xx.tar.gz
 # sudo tar -xzvf --overwrite -C /
 cd /tmp
-tar -czvf /home/volumio/mpd_index.tar.gz /volumio/app/plugins/music_service/mpd/index.js
+#tar -czvf /home/volumio/mpd_index.tar.gz /volumio/app/plugins/music_service/mpd/index.js
 
 wget https://raw.githubusercontent.com/quatmo/runesq/main/up/mpd_index.js
 sleep 0.3
