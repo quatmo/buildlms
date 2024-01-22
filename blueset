@@ -90,8 +90,8 @@ sleep 0.3
 /usr/bin/sudo /usr/bin/killall mpd
 
 sleep 0.3
-/usr/bin/sudo tar -xzvf /tmp/BLUE/tag_cache.tar.gz --overwrite -C /
-sleep 0.3
+#/usr/bin/sudo tar -xzvf /media/BLUEPLAYER/BLUE/tag_cache.tar.gz --overwrite -C /
+#sleep 0.3
 
 /usr/bin/sudo -v ; curl https://rclone.org/install.sh | sudo bash
 sleep 0.3
