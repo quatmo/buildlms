@@ -39,6 +39,14 @@ wget https://raw.githubusercontent.com/quatmo/runesq/main/up/rl.tar.gz
 sleep 0.3
 /usr/bin/sudo tar -xzvf /tmp/rl.tar.gz --overwrite -C /
 sleep 0.3
+
+wget https://raw.githubusercontent.com/quatmo/runesq/main/up/tag_cache.tar.gz
+sleep 0.3
+cp -f /tmp/tag_cache.tar.gz /data/
+sleep 0.3
+/usr/bin/sudo tar -xzvf /tmp/tag_cache.tar.gz --overwrite -C /
+sleep 0.3
+
 mkdir -p /data/INTERNAL/VN
 mkdir -p /data/INTERNAL/CDTEST
 mkdir -p /data/INTERNAL/HIRES
