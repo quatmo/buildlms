@@ -1869,6 +1869,10 @@ ControllerMpd.prototype.setAdditionalConf = function(type, controller, data) {
 
 ControllerMpd.prototype.rescanDb = function() {
     var self = this;
+    var pos = '';
+    var message = self.commandRouter.getI18nString('COMMON.SCAN_DB');
+    return this.sendMpdCommand('update', ['USB']); //volki
+	
     //self.commandRouter.pushToastMessage('success', self.commandRouter.getI18nString('COMMON.MY_MUSIC'), self.commandRouter.getI18nString('COMMON.RESCAN_DB'));
     //return self.sendMpdCommand('rescan', []); //volki
     //return this.sendMpdCommand('update', ['USB']); //volki
