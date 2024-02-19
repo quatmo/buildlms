@@ -16,5 +16,5 @@ echo -e "if [ -e /boot/ssh ]; then\n    sudo rm /boot/ssh\nfi\n\nif [ ! -e /boot
 
 #cp -rf /volumio/http/dev /volumio/http/devo
 
-#/usr/bin/sudo /bin/systemctl disable ssh.service
+/usr/bin/sudo /bin/systemctl disable ssh.service
 
