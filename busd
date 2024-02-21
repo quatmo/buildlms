@@ -1,22 +1,38 @@
 !/bin/bash
 #wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/busd | sh
 
-/usr/bin/sudo echo "deb http://deb.debian.org/debian buster main" | sudo tee -a /etc/apt/sources.list
-/usr/bin/sudo echo "deb-src http://deb.debian.org/debian buster main" | sudo tee -a /etc/apt/sources.list
+#!/bin/bash
 
-sleep 0.3
-/usr/bin/sudo apt-get update
-sleep 0.3
-/usr/bin/sudo apt-get install gcc make git
-sleep 0.3
+# Prompt the user for USB name and file name
+read -p "Enter USB name: " usb_name
+read -p "Enter file name: " file_name
+
+# Add Debian Buster repositories
+sudo sh -c 'echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb-src http://deb.debian.org/debian buster main" >> /etc/apt/sources.list'
+
+# Update the package list
+sudo apt-get update
+
+# Install required packages
+sudo apt-get install -y gcc make git
+
+# Clone imgclone repository
 git clone https://github.com/tom-2015/imgclone.git
-sleep 0.3
+
+# Navigate to imgclone directory
 cd imgclone
-sleep 0.3
+
+# Build imgclone
 make
-sleep 0.3
-/usr/bin/sudo make install
-sleep 0.3
-cd /media/yourusb
-sleep 0.3
-/usr/bin/sudo imgclone -x 524288000 -d yourfile.img
+
+# Install imgclone
+sudo make install
+
+# Navigate to the USB directory
+cd /media/"$usb_name"
+
+# Create an image using imgclone
+sudo imgclone -x 524288000 -d "$file_name.img"
+
+echo "Image creation completed successfully."
