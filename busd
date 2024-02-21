@@ -24,5 +24,7 @@ make
 sudo make install
 
 echo "Install completed successfully."
+
+
 echo "Make IMG file"
 read -p "Please enter USB disk name: " usb_name && read -p "Please enter IMG file name: " file_name && cd /media/"$usb_name" && sudo imgclone -x 524288000 -d "$file_name.img"
