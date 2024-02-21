@@ -1,0 +1,22 @@
+!/bin/bash
+#wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/busd | sh
+
+/usr/bin/sudo echo "deb http://deb.debian.org/debian buster main" | sudo tee -a /etc/apt/sources.list
+/usr/bin/sudo echo "deb-src http://deb.debian.org/debian buster main" | sudo tee -a /etc/apt/sources.list
+
+sleep 0.3
+/usr/bin/sudo apt-get update
+sleep 0.3
+/usr/bin/sudo apt-get install gcc make git
+sleep 0.3
+git clone https://github.com/tom-2015/imgclone.git
+sleep 0.3
+cd imgclone
+sleep 0.3
+make
+sleep 0.3
+/usr/bin/sudo make install
+sleep 0.3
+cd /media/yourusb
+sleep 0.3
+/usr/bin/sudo imgclone -x 524288000 -d yourfile.img
