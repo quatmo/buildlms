@@ -1,11 +1,11 @@
-!/bin/bash
+e Plea!/bin/bash
 #wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/busd | sh
 
 #!/bin/bash
 
 # Prompt the user for USB name and file name
-read -p "Enter USB disk name: " usb_name
-read -p "Enter IMG file name: " file_name
+read -p "Please enter USB disk name: " usb_name
+read -p "Please enter IMG file name: " file_name
 
 # Add Debian Buster repositories
 sudo sh -c 'echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list'
