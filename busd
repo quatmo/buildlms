@@ -4,8 +4,8 @@
 #!/bin/bash
 
 # Prompt the user for USB name and file name
-read -p "Enter USB name: " usb_name
-read -p "Enter file name: " file_name
+read -p "Enter USB disk name: " usb_name
+read -p "Enter IMG file name: " file_name
 
 # Add Debian Buster repositories
 sudo sh -c 'echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list'
