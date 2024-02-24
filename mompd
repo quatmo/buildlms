@@ -1,5 +1,6 @@
 #!/bin/bash
 # wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/mompd | sh
+# cd /tmp && wget https://raw.githubusercontent.com/quatmo/runesq/main/mompd && chmod -R 755 /tmp/mompd && ./mompd
 file_path="/volumio/app/plugins/music_service/mpd/index.js"
 file_path2="/volumio/app/plugins/system_controller/networkfs/index.js"
 file_path3="/volumio/app/plugins/system_controller/system/index.js"
@@ -77,4 +78,8 @@ ControllerSystem.prototype.savePrivacySettings = function (data) {\
     });\
     return self.commandRouter.reloadUi();\
 };' "$file_path3"
+
+
+echo "Done"
+
 
