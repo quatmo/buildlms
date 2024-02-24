@@ -1,13 +1,12 @@
 #!/bin/bash
 # wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/mompd | sh
-# Specify the path to the file
+
+
 file_path="/volumio/app/plugins/music_service/mpd/index.js"
 
-# Use awk to replace the old line with the new lines
 awk '/return this.sendMpdCommand\('"'"'update'"'"', \[\]\);/ { print "    //return this.sendMpdCommand(\x27update\x27, \x27\x27);"; print "    return this.sendMpdCommand(\x27update\x27, ['USB']);"; print "    return this.sendMpdCommand(\x27update\x27, ['NAS']);"; next } 1' "$file_path" > temp_file && mv temp_file "$file_path"
 
 
-# Use sed to replace the old block of code with the new lines for updateDb
 sed -i '/ControllerMpd.prototype.updateDb = function (data) {/,/};/c\
 ControllerMpd.prototype.updateDb = function(data) {\
     var self = this;\
@@ -23,7 +22,7 @@ ControllerMpd.prototype.updateDb = function(data) {\
     // return self.sendMpdCommand(\x27update\x27, [pos]);\
 };' "$file_path"
 
-# Use sed to replace the old block of code with the new lines for rescanDb
+
 sed -i '/ControllerMpd.prototype.rescanDb = function () {/,/};/c\
 ControllerMpd.prototype.rescanDb = function () {\
     var self = this;\
@@ -35,7 +34,6 @@ ControllerMpd.prototype.rescanDb = function () {\
 };' "$file_path"
 
 
-# Replace the old line with the new lines
 old_line="execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
 new_lines="//execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
 new_lines+="\nreturn this.sendMpdCommand('update', ['USB']);"
