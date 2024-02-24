@@ -1,11 +1,10 @@
 #!/bin/bash
 # wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/mompd | sh
-
-
 file_path="/volumio/app/plugins/music_service/mpd/index.js"
+file_path2="/volumio/app/plugins/system_controller/networkfs/index.js"
+file_path3="/volumio/app/plugins/system_controller/system/index.js"
 
 awk '/return this.sendMpdCommand\('"'"'update'"'"', \[\]\);/ { print "    //return this.sendMpdCommand(\x27update\x27, \x27\x27);"; print "    return this.sendMpdCommand(\x27update\x27, ['USB']);"; print "    return this.sendMpdCommand(\x27update\x27, ['NAS']);"; next } 1' "$file_path" > temp_file && mv temp_file "$file_path"
-
 
 sed -i '/ControllerMpd.prototype.updateDb = function (data) {/,/};/c\
 ControllerMpd.prototype.updateDb = function(data) {\
@@ -45,6 +44,34 @@ old_line1="self.checkUSBDrives();"
 new_lines1="//self.checkUSBDrives();"
 sed -i "s|$old_line1|$new_lines1|g" "$file_path"
 
+old_line2="execSync('/usr/bin/mpc update "' + clearFolder + '"', {uid: 1000, gid: 1000});"
+new_lines2="//execSync('/usr/bin/mpc update "' + clearFolder + '"', {uid: 1000, gid: 1000});"
+sed -i "s|$old_line2|$new_lines2|g" "$file_path2"
 
-echo "Done"
+
+sed -i '/ControllerSystem.prototype.deleteUserData = function () {/,/};/c\
+ControllerSystem.prototype.deleteUserData = function () {\
+    var self = this;\
+    exec("/usr/bin/sudo tar -xzvf /data/configuration.tar.gz --overwrite -C / && /usr/bin/sudo tar -xzvf /data/boot.tar.gz --overwrite -C / && /usr/bin/sudo tar -xzvf /data/tag_cache.tar.gz --overwrite -C / && /usr/bin/sudo tar -xzvf /data/wpa_supplicant.tar.gz --overwrite -C /", { uid: 1000, gid: 1000 }, function (error, stdout, stderr) {\
+        if (error) self.logger.error("Cannot " + error);\
+        else {\
+            self.logger.info("Success");\
+            self.commandRouter.reboot();\
+        }\
+    });\
+};' "$file_path3"
+
+sed -i '/ControllerSystem.prototype.savePrivacySettings = function (data) {/,/};/c\
+ControllerSystem.prototype.savePrivacySettings = function (data) {\
+    var self = this;\
+    var defer = libQ.defer();\
+    exec("/usr/bin/sudo tar -czvf /data/configuration.tar.gz /data/configuration && /usr/bin/sudo tar -czvf /data/boot.tar.gz /boot/config.txt && /usr/bin/sudo tar -czvf /data/tag_cache.tar.gz /var/lib/mpd/tag_cache && /usr/bin/sudo tar -czvf /data/wpa_supplicant.tar.gz /etc/wpa_supplicant/wpa_supplicant.conf", {uid: 1000, gid: 1000}, function (error, stdout, stderr) {\
+        if (error !== null) {\
+            self.logger.error("Cannot" + error);\
+        } else {\
+            self.logger.info("success");\
+        }\
+    });\
+    return self.commandRouter.reloadUi();\
+};' "$file_path3"
 
