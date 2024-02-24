@@ -30,8 +30,11 @@ sleep 0.3
 /usr/bin/sudo tar -xzvf /tmp/tag_cache.tar.gz --overwrite -C /
 sleep 0.3
 
-folRoot="/data/INTERNAL"
-mkdir -p "$folRoot"/{VN,CDTEST,HIRES,INS,BLUE,MUSICONE,DSD,THAI}
+folderRoot="/data/INTERNAL"
+subdirectories=("VN" "CDTEST" "HIRES" "INS" "BLUE" "MUSICONE" "DSD" "THAI")
+for subdir in "${subdirectories[@]}"; do
+    mkdir -p "$folderRoot/$subdir"
+done
 
 sleep 0.3
 cd /etc/systemd/system/
