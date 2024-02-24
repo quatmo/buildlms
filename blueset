@@ -67,7 +67,6 @@ cd /tmp
 echo "Paste the Albumart file ID and press Enter:"
 read file_id
 if [ -n "$file_id" ]; then
-    # Download the file using gdown
     gdown --id "$file_id" -O albumart.tar.gz
 else
     echo "File ID is empty. Exiting."
