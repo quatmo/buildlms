@@ -45,10 +45,7 @@ for service in "${services[@]}"; do
   /usr/bin/sudo systemctl enable "${service}.service"
 done
 
-
 sleep 0.3
-/usr/bin/sudo tar -xzvf /tmp/BLUE/binimg.tar.gz --overwrite -C /
-/usr/bin/sudo tar -xzvf /tmp/BLUE/imgclone.tar.gz --overwrite -C /
 /usr/bin/sudo tar -xzvf /tmp/BLUE/upnp.tar.gz --overwrite -C /
 sleep 0.3
 /usr/bin/sudo apt-get update
