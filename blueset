@@ -76,14 +76,11 @@ sleep 0.3
 
 rclone config
 
-/usr/bin/sudo systemctl restart slibcdt.service
-/usr/bin/sudo systemctl restart slibbol.service
-/usr/bin/sudo systemctl restart slibhir.service
-/usr/bin/sudo systemctl restart slibmq.service
-/usr/bin/sudo systemctl restart slibse.service
-/usr/bin/sudo systemctl restart slimone.service
-/usr/bin/sudo systemctl restart volds.service
-/usr/bin/sudo systemctl restart slibthai.service
+services=("slibcdt" "slibbol" "slibhir" "slibmq" "slibse" "slimone" "volds" "slibthai")
+for service in "${services[@]}"; do
+  /usr/bin/sudo systemctl restart "${service}.service"
+done
+
 
 echo "Completed"
 
