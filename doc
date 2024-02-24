@@ -1,8 +1,0 @@
-#!/bin/bash
-# wget -O - https://raw.githubusercontent.com/quatmo/runesq/main/doc | sh
-# sudo tar -czvf xx.tar.gz
-# sudo tar -xzvf --overwrite -C /
-
-
-#/usr/bin/sudo /bin/systemctl disable ssh.service
-
