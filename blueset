@@ -36,7 +36,6 @@ mkdir -p "$folRoot"/{VN,CDTEST,HIRES,INS,BLUE,MUSICONE,DSD,THAI}
 sleep 0.3
 cd /etc/systemd/system/
 services="slibbol slibcdt slibhir slibmq slibse slimone volds slibthai"
-
 for service in $services; do
   /usr/bin/sudo ln -s "/etc/.s/${service}.service" "${service}.service"
 done
