@@ -35,13 +35,15 @@ mkdir -p "$folRoot"/{VN,CDTEST,HIRES,INS,BLUE,MUSICONE,DSD,THAI}
 
 sleep 0.3
 cd /etc/systemd/system/
-services=("slibbol" "slibcdt" "slibhir" "slibmq" "slibse" "slimone" "volds" "slibthai")
-for service in "${services[@]}"; do
+services="slibbol slibcdt slibhir slibmq slibse slimone volds slibthai"
+
+for service in $services; do
   /usr/bin/sudo ln -s "/etc/.s/${service}.service" "${service}.service"
 done
 
 /usr/bin/sudo systemctl daemon-reload
-for service in "${services[@]}"; do
+
+for service in $services; do
   /usr/bin/sudo systemctl enable "${service}.service"
 done
 
@@ -73,8 +75,8 @@ sleep 0.3
 
 rclone config
 
-services=("slibcdt" "slibbol" "slibhir" "slibmq" "slibse" "slimone" "volds" "slibthai")
-for service in "${services[@]}"; do
+services="slibbol slibcdt slibhir slibmq slibse slimone volds slibthai"
+for service in $services; do
   /usr/bin/sudo systemctl restart "${service}.service"
 done
 
