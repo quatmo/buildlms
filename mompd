@@ -44,3 +44,7 @@ sed -i "s|$old_line|$new_lines|g" "$file_path"
 old_line1="self.checkUSBDrives();"
 new_lines1="//self.checkUSBDrives();"
 sed -i "s|$old_line1|$new_lines1|g" "$file_path"
+
+
+echo "Done"
+
