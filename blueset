@@ -11,7 +11,7 @@ cd /tmp
 wget https://raw.githubusercontent.com/quatmo/runesq/main/mompd
 /usr/bin/sudo chmod -R 755 /tmp/mompd
 ./mompd
-echo "Mod done!"
+echo "Index done!"
 
 mkdir -p /tmp/BLUE
 cp -rf /media/BLUEPLAYER/BLUE/* /tmp/BLUE/
