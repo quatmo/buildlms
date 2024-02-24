@@ -63,14 +63,15 @@ sleep 0.3
 sudo pip3 install gdown
 sleep 0.3
 cd /tmp
-#gdown --id 1AoNR0VXxuha2Ey67tjLoq6jLo2wRKNHT -O albumart.tar.gz
+
 echo "Paste the Albumart file ID and press Enter:"
-read file_id
-if [ -n "$file_id" ]; then
-    gdown --id "$file_id" -O albumart.tar.gz
-else
-    echo "File ID is empty. Exiting."
-fi
+gdown --id 1AoNR0VXxuha2Ey67tjLoq6jLo2wRKNHT -O albumart.tar.gz
+#read file_id
+#if [ -n "$file_id" ]; then
+#    gdown --id "$file_id" -O albumart.tar.gz
+#else
+#    echo "File ID is empty. Exiting."
+#fi
 
 sleep 0.3
 /usr/bin/sudo tar -xzvf /tmp/BLUE/etcfuse.tar.gz --overwrite -C /
