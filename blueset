@@ -58,18 +58,22 @@ sleep 0.3
 sleep 0.3
 sudo apt-get install -y default-jre
 sleep 0.3
-#sudo apt-get install -y python3-pip
+sudo apt-get install -y python3-pip
 sleep 0.3
-#sudo pip3 install gdown
-/usr/bin/sudo ln -s /home/volumio/upnp/upnp.service /etc/systemd/system/upnp.service
+sudo pip3 install gdown
 sleep 0.3
-
+cd /tmp
+gdown --id 1AoNR0VXxuha2Ey67tjLoq6jLo2wRKNHT -O albumart.tar.gz
+sleep 0.3
 /usr/bin/sudo tar -xzvf /tmp/BLUE/etcfuse.tar.gz --overwrite -C /
 sleep 0.3
 #sudo systemctl stop mpd.service
 sleep 0.3
 /usr/bin/sudo /usr/bin/killall mpd
-
+sleep 0.3
+tar -xzvf /tmp/albumart.tar.gz --overwrite -C /
+sleep 0.3
+/usr/bin/sudo ln -s /home/volumio/upnp/upnp.service /etc/systemd/system/upnp.service
 sleep 0.3
 
 /usr/bin/sudo -v ; curl https://rclone.org/install.sh | sudo bash
