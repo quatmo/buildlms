@@ -8,7 +8,7 @@ cp -f $file_path /volumio/app/plugins/music_service/mpd/index1.js
 cp -f $file_path2 /volumio/app/plugins/system_controller/networkfs/index1.js
 cp -f $file_path3 /volumio/app/plugins/system_controller/system/index_1.js
 
-awk '/return this.sendMpdCommand\('"'"'update'"'"', \[\]\);/ { print "    //return this.sendMpdCommand(\x27update\x27, \x27\x27);"; print "    return this.sendMpdCommand(\x27update\x27, ['USB']);"; next } 1' "$file_path" > temp_file && mv temp_file "$file_path"
+awk '/return this.sendMpdCommand\('"'"'update'"'"', \[\]\);/ { print "    //return this.sendMpdCommand(\x27update\x27, \x27\x27);"; print "    //return this.sendMpdCommand(\x27update\x27, ['USB']);"; next } 1' "$file_path" > temp_file && mv temp_file "$file_path"
 
 sed -i '/ControllerMpd.prototype.updateDb = function (data) {/,/};/c\
 ControllerMpd.prototype.updateDb = function(data) {\
