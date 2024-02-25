@@ -8,7 +8,7 @@ cp -f $file_path /volumio/app/plugins/music_service/mpd/index1.js
 cp -f $file_path2 /volumio/app/plugins/system_controller/networkfs/index1.js
 cp -f $file_path3 /volumio/app/plugins/system_controller/system/index_1.js
 
-awk '/return this.sendMpdCommand\('"'"'update'"'"', \[\]\);/ { print "    //return this.sendMpdCommand(\x27update\x27, \x27\x27);"; print "    return this.sendMpdCommand(\x27update\x27, ['USB']);"; print "    return this.sendMpdCommand(\x27update\x27, ['NAS']);"; next } 1' "$file_path" > temp_file && mv temp_file "$file_path"
+awk '/return this.sendMpdCommand\('"'"'update'"'"', \[\]\);/ { print "    //return this.sendMpdCommand(\x27update\x27, \x27\x27);"; print "    return this.sendMpdCommand(\x27update\x27, ['USB']);"; next } 1' "$file_path" > temp_file && mv temp_file "$file_path"
 
 sed -i '/ControllerMpd.prototype.updateDb = function (data) {/,/};/c\
 ControllerMpd.prototype.updateDb = function(data) {\
@@ -16,7 +16,6 @@ ControllerMpd.prototype.updateDb = function(data) {\
     var pos = \x27\x27;\
     var message = self.commandRouter.getI18nString(\x27COMMON.SCAN_DB\x27);\
     this.sendMpdCommand(\x27update\x27, \x27USB\x27);\
-    this.sendMpdCommand(\x27update\x27, \x27NAS\x27);\
     // if (data != undefined) {\
     //     pos = data.replace(\x27music-library/\x27, \x27\x27);\
     //     message = pos + \x27: \x27 + message;\
@@ -40,7 +39,6 @@ ControllerMpd.prototype.rescanDb = function () {\
 old_line="execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
 new_lines="//execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
 new_lines+="\nreturn this.sendMpdCommand('update', ['USB']);"
-new_lines+="\nreturn this.sendMpdCommand('update', ['NAS']);"
 sed -i "s|$old_line|$new_lines|g" "$file_path"
 
 
