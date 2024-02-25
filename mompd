@@ -38,7 +38,7 @@ ControllerMpd.prototype.rescanDb = function () {\
 
 old_line="execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
 new_lines="//execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
-new_lines+="\nreturn this.sendMpdCommand('update', ['USB']);"
+new_lines+="\n"
 sed -i "s|$old_line|$new_lines|g" "$file_path"
 
 
