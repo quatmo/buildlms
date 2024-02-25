@@ -22,5 +22,7 @@ wget https://raw.githubusercontent.com/quatmo/runesq/main/up/rl.tar.gz
 sleep 0.3
 /usr/bin/sudo tar -xzvf /tmp/rl.tar.gz --overwrite -C /
 sleep 0.3
+/usr/bin/sudo -v ; curl https://rclone.org/install.sh | sudo bash
+sleep 0.3
 rclone config
 echo "Install Basic Completed"
