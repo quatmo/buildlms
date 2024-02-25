@@ -23,6 +23,8 @@ make
 # Install imgclone
 sudo make install
 
+rm /home/volumio/.bash_history
+
 echo "Install completed successfully."
 
 #read -p "Please enter USB disk name: " usb_name && read -p "Please enter IMG file name: " file_name && cd /media/"$usb_name" && sudo imgclone -x 524288000 -d "$file_name.img"
