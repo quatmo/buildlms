@@ -77,6 +77,7 @@ ControllerSystem.prototype.savePrivacySettings = function (data) {\
     return self.commandRouter.reloadUi();\
 };' "$file_path3"
 
+sed -i "s|exec('/usr/bin/mpc update', {uid: 1000, gid: 1000}|exec('', {uid: 1000, gid: 1000})|g" "/volumio/app/plugins/music_service/mpd/index.js"
 
 echo "Done"
 
