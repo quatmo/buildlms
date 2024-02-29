@@ -13,9 +13,7 @@ awk '/return this.sendMpdCommand\('"'"'update'"'"', \[\]\);/ { print "    //retu
 sed -i '/ControllerMpd.prototype.updateDb = function (data) {/,/};/c\
 ControllerMpd.prototype.updateDb = function(data) {\
     var self = this;\
-    var pos = \x27\x27;\
-    var message = self.commandRouter.getI18nString(\x27COMMON.SCAN_DB\x27);\
-    this.sendMpdCommand(\x27update\x27, \x27USB\x27);\
+    self.checkUSBDrives(); //volki\
     // if (data != undefined) {\
     //     pos = data.replace(\x27music-library/\x27, \x27\x27);\
     //     message = pos + \x27: \x27 + message;\
@@ -28,10 +26,8 @@ ControllerMpd.prototype.updateDb = function(data) {\
 sed -i '/ControllerMpd.prototype.rescanDb = function () {/,/};/c\
 ControllerMpd.prototype.rescanDb = function () {\
     var self = this;\
-    var pos = \x27\x27;\
-    var message = self.commandRouter.getI18nString(\x27COMMON.SCAN_DB\x27);\
-    this.sendMpdCommand(\x27update\x27, \x27USB\x27);\
-    //self.commandRouter.pushToastMessage(\x27success\x27, //self.commandRouter.getI18nString(\x27COMMON.MY_MUSIC\x27), //self.commandRouter.getI18nString(\x27COMMON.RESCAN_DB\x27));\
+    self.checkUSBDrives(); //volki\
+        //self.commandRouter.pushToastMessage(\x27success\x27, //self.commandRouter.getI18nString(\x27COMMON.MY_MUSIC\x27), //self.commandRouter.getI18nString(\x27COMMON.RESCAN_DB\x27));\
     //return self.sendMpdCommand(\x27rescan\x27, []);\
 };' "$file_path"
 
