@@ -42,10 +42,6 @@ ControllerMpd.prototype.rescanDb = function () {\
 #sed -i "s|$old_line|$new_lines|g" "$file_path"
 
 
-old_line1="self.checkUSBDrives();"
-new_lines1="//self.checkUSBDrives();"
-sed -i "s|$old_line1|$new_lines1|g" "$file_path"
-
 old_line2="execSync('/usr/bin/mpc update "' + clearFolder + '"', {uid: 1000, gid: 1000});"
 new_lines2="//execSync('/usr/bin/mpc update "' + clearFolder + '"', {uid: 1000, gid: 1000});"
 sed -i "s|$old_line2|$new_lines2|g" "$file_path2"
@@ -76,6 +72,40 @@ ControllerSystem.prototype.savePrivacySettings = function (data) {\
     });\
     return self.commandRouter.reloadUi();\
 };' "$file_path3"
+
+sed -i '/ControllerMpd.prototype.mpdEstablish = function () {/,/};/c\
+ControllerMpd.prototype.mpdEstablish = function () {\
+    var self = this;\
+    \
+    // TODO use names from the package.json instead\
+    self.servicename = \x27mpd\x27;\
+    self.displayname = \x27MPD\x27;\
+    \
+    // getting configuration\
+    \
+    // Save a reference to the parent commandRouter\
+    self.commandRouter = self.context.coreCommand;\
+    // Connect to MPD\
+    self.mpdConnect();\
+    \
+    // Make a promise for when the MPD connection is ready to receive events\
+    self.mpdReady = libQ.nfcall(self.clientMpd.on.bind(self.clientMpd), \x27ready\x27);\
+    \
+    self.mpdReady.then(function () {\
+        if (startup) {\
+            startup = false;\
+            setTimeout(()=>{\
+                //self.checkIfMpdRequiresRescan();\
+            }, 2500)\
+            setTimeout(()=>{\
+                //self.checkUSBDrives(); //volki\
+                //self.listAlbums(); //volki\
+                //self.getMyCollectionStats(); //volki\
+            }, 5000);\
+        }\
+    });\
+};' "$file_path"
+
 
 #sed -i "s|exec('/usr/bin/mpc update', {uid: 1000, gid: 1000}|exec('', {uid: 1000, gid: 1000})|g" "/volumio/app/plugins/music_service/mpd/index.js"
 
