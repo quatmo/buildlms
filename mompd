@@ -34,7 +34,7 @@ ControllerMpd.prototype.rescanDb = function () {\
 
 old_line1="execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
 new_lines1="//execSync('/usr/bin/mpc rescan', { uid: 1000, gid: 1000});"
-new_lines1+="\n"
+new_lines1+=$'\n'
 sed -i "s|$old_line1|$new_lines1|g" "$file_path"
 
 
